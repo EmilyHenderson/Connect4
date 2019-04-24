@@ -9,7 +9,7 @@ public class Driver {
 	public static void main(String[] args) throws InterruptedException {
 
 		// Setup constants for the Board
-		final int ROWS = 7;
+		final int ROWS = 6; // change
 		final int COLS = 7;
 
 		// create the board
