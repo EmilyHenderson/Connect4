@@ -35,7 +35,7 @@ public class Board {
 		for (int i = getRows() - 1; i >= 0; i--) {
 			if (board[i][col].getState() == CellState.EMPTY) {
 				board[i][col].setState(player);
-				return i+1; // return the row
+				return i + 1; // return the row
 			}
 
 		}
@@ -45,44 +45,76 @@ public class Board {
 
 	public boolean HorizontalWinner(int row, int col) {
 		int counter = 1;
-		// adjust index
+		// adjust col and row
 		col = col - 1;
 		row = row - 1;
 
 		int c = col;
 
 		// look right
-		while (c<cols-1  &&  board[row][c].getState() == board[row][c + 1].getState()) {
+		while (c < cols - 1 && board[row][c].getState() == board[row][c + 1].getState()) {
 			counter++;
 			c++;
 		}
 
 		// look left
-		while (c>0   && board[row][c].getState() == board[row][c - 1].getState()) {
+		while (c > 0 && board[row][c].getState() == board[row][c - 1].getState()) {
 			counter++;
 			c--;
 		}
 
 		return (counter == 4);
 	}
-	/**public boolean diagonalwinner(int col, int row, CellState player) {
-	int counter = 0;
-	// adjust col
-	col = col-1;
-	row = row-1;
+
+	public boolean diagonalwinnerUp(int col, int row, CellState player) {
+		int counter = 1;
+		// adjust col and row
+		col = col - 1;
+		row = row - 1;
+		int c = col;
+		int r = row;
+		
+		while (c < (cols - 1) && (r>0) && board[r][c].getState() == board[r - 1][c + 1].getState()) {
+			counter++;
+			c++;
+			r--;
+		}
+		r = row;
+		c = col;
+		while (c > 0 && r < (rows-1) && board[r][c].getState() == board[r + 1][c - 1].getState()) {
+			counter++;
+			c--;
+			r++;
+
+		}
+
+		return (counter == 4);
+	}
 	
-			for(int i=0; i<getCols()-1; i++) {
-				for(int c=0; c<getRows()-1; c++) {
-					if(board[i][c].getState()== player) {
-						counter +=1;
-					}
-					else {
-						counter = 0;
-					}
-				}
-			}
-	return (counter == 4);
-}*/
+	public boolean diagonalwinnerDown(int col, int row, CellState player) {
+		int counter = 1;
+		// adjust col and row
+		col = col - 1;
+		row = row - 1;
+		int c = col;
+		int r = row;
+		// check right
+		while (c > 0 && r < (rows-1) && board[r][c].getState() == board[r - 1][c + 1].getState()) {
+			counter++;
+			c++;
+			r--;
+		}
+		r = row;
+		c = col;
+		while (c < (cols-1) && r >0 && board[r][c].getState() == board[r + 1][c - 1].getState()) {
+			counter++;
+			c--;
+			r++;
+
+		}
+
+		return (counter == 4);
+	}
 
 	public boolean VerticalWinner(int col, CellState player) {
 		int counter = 0;
@@ -101,15 +133,14 @@ public class Board {
 		return (counter == 4);
 
 	}
-	
-	
+
 	public void DiagonalWinner(int col, int row) {
 		int counter1 = 0;
 		int counter2 = 0;
-		//adjust
-		col = col -1;
-		row = row-1;
-		for (int i = 0; i < getCols()-1; i++) {
+		// adjust
+		col = col - 1;
+		row = row - 1;
+		for (int i = 0; i < getCols() - 1; i++) {
 			for (int c = 0; c < getRows() - 1; c++) {
 				if (board[i][c].getState() == CellState.P1) {
 					counter1 += 1;
@@ -129,6 +160,7 @@ public class Board {
 		}
 
 	}
+
 	void display() {
 		System.out.println("BOARD");
 		for (int i = 0; i < rows; i++) {

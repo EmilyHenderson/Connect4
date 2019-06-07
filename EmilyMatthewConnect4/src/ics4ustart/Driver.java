@@ -1,5 +1,12 @@
 package ics4ustart;
 import java.util.Scanner;
+/**
+ * Emily Henderson 
+ * Connect four Game
+ */
+
+import hutchison.grant.ColorState;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
@@ -22,7 +29,7 @@ public class Driver{
 
 	public static void main(String[] args) throws InterruptedException {
 		// Setup constants for the Board
-		final int ROWS = 7; // change
+		final int ROWS = 7; 
 		final int COLS = 7;
 
 		// create the board
@@ -66,7 +73,14 @@ public class Driver{
 					done = true;
 				}
 				// Diagonal Winner
-				board.DiagonalWinner(column, row);
+				if (board.diagonalwinnerUp(column, row, currentPlayer)) {
+					System.out.println("Player " + currentPlayer + " is a winner!");
+					done = true;
+				}
+				if (board.diagonalwinnerDown(column, row, currentPlayer)) {
+					System.out.println("Player " + currentPlayer + " is a winner!");
+					done = true;
+				}
 				
 				if (currentPlayer == CellState.P1) {
 					currentPlayer = CellState.P2;
@@ -77,7 +91,7 @@ public class Driver{
 				}
 		}
 	}
-
+	
 	private static int getColumn() {
 		boolean valid = false;
 		int column = 0;
