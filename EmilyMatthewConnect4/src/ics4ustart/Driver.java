@@ -5,7 +5,6 @@ import java.util.Scanner;
  * Connect four Game
  */
 
-import hutchison.grant.ColorState;
 
 import java.util.ArrayList;
 import java.util.List;

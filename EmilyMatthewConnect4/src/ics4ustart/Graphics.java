@@ -1,5 +1,9 @@
 package ics4ustart;
 import java.util.Scanner;
+/**
+ * Graphics for connect four game
+ * Emily Hennderson
+ */
 
 import hutchison.grant.Board;
 import hutchison.grant.ColorState;
@@ -131,26 +135,7 @@ public class Graphics extends Application {
 		}
 		);
 	
-		/**private void updateBoard(board, slots) {
-			for (int i = 0; i < board.getRows(); i++) {
-				for (int j = 0; j < board.getCols(); j++) {
-					switch (board.getColor(i, j)) {
-					case RED:
-						slots[i][j].setStyle("-fx-base: #ff0000;");
-						break;
-					case BLUE:
-						slots[i][j].setStyle("-fx-base: #0000ff;");
-						break;
-					case YELLOW:
-						slots[i][j].setStyle("-fx-base: #ffff00;");
-						break;
-					case GREEN:
-						slots[i][j].setStyle("-fx-base: #00ff00;");
-						break;
-					}
-				}
-			}
-		}*/
+		
 		
 		Scene Scene1 = new Scene(layout1, 200, 200);
 		PrimaryStage.setScene(Scene1);

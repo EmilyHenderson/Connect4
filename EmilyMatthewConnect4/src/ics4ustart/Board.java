@@ -6,7 +6,7 @@ public class Board {
 	private Cell[][] board;
 	private int rows;
 	private int cols;
-
+	
 	public Board(int aRows, int aCols) {
 		board = new Cell[aRows][aCols];
 		rows = aRows;
@@ -29,7 +29,12 @@ public class Board {
 	public boolean isValid(int x, int y) {
 		return (x >= 0 && x < rows) && (y >= 0 && y < cols);
 	}
-
+	/**
+	 * places piece on board
+	 * @param player
+	 * @param col
+	 * @return
+	 */
 	public int piece(CellState player, int col) {
 		col = col - 1;
 		for (int i = getRows() - 1; i >= 0; i--) {
@@ -42,7 +47,12 @@ public class Board {
 		return 0; // invalid row
 
 	}
-
+	/**
+	 * checks for horizontal winner
+	 * @param row
+	 * @param col
+	 * @return
+	 */
 	public boolean HorizontalWinner(int row, int col) {
 		int counter = 1;
 		// adjust col and row
@@ -65,7 +75,13 @@ public class Board {
 
 		return (counter == 4);
 	}
-
+	/**
+	 * checks for diagonal winner up
+	 * @param col
+	 * @param row
+	 * @param player
+	 * @return
+	 */
 	public boolean diagonalwinnerUp(int col, int row, CellState player) {
 		int counter = 1;
 		// adjust col and row
@@ -90,9 +106,15 @@ public class Board {
 
 		return (counter == 4);
 	}
-	
+	/**
+	 * checks for diagonal winner down NOT WORKING
+	 * @param col
+	 * @param row
+	 * @param player
+	 * @return
+	 */
 	public boolean diagonalwinnerDown(int col, int row, CellState player) {
-		int counter = 1;
+	/*	int counter = 1;
 		// adjust col and row
 		col = col - 1;
 		row = row - 1;
@@ -113,9 +135,15 @@ public class Board {
 
 		}
 
-		return (counter == 4);
+		return (counter == 4);*/
+		return false;
 	}
-
+	/**
+	 * checks for Vertical Winner
+	 * @param col
+	 * @param player
+	 * @return
+	 */
 	public boolean VerticalWinner(int col, CellState player) {
 		int counter = 0;
 		// adjust col
@@ -134,32 +162,7 @@ public class Board {
 
 	}
 
-	public void DiagonalWinner(int col, int row) {
-		int counter1 = 0;
-		int counter2 = 0;
-		// adjust
-		col = col - 1;
-		row = row - 1;
-		for (int i = 0; i < getCols() - 1; i++) {
-			for (int c = 0; c < getRows() - 1; c++) {
-				if (board[i][c].getState() == CellState.P1) {
-					counter1 += 1;
-				}
-				if (board[i][c].getState() == CellState.P2) {
-					counter2 += 1;
-				}
-				if (counter1 >= 4) {
-					System.out.println("Player one Wins!");
-					return;
-				}
-				if (counter2 >= 4) {
-					System.out.println("Player two Wins!");
-					return;
-				}
-			}
-		}
 
-	}
 
 	void display() {
 		System.out.println("BOARD");
